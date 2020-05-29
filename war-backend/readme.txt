@@ -5,3 +5,7 @@ The files located within this directory references all the backend logic for the
 
 - Style conventions are based on pythons's official docs and some emerging conventions recorded at the following link:
  
+- To manage dependencies, the server is run within a python3 docker image. To use the image, at the
+  project root, run:
+  1. docker build -t python-war .
+  2. docker run  python-war
