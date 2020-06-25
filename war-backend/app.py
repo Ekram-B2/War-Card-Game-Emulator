@@ -1,22 +1,15 @@
 from flask import Flask, Blueprint
 #from flask_restplus import Api
-from databaseclient import client
 from models import modelmanager
 #from services.socketio import socketio
 
 def create_app():
     # 1. Create instance of flask object
     app = Flask(__name__)
-
-    # 2. Test connection with SqlLite instance
-    db_client = client.get_database_client("sqlite", "/root/sqlite.db")
-    is_established_connection = db_client.test_connection()
-    if not is_established_connection:
-        return None
     
-    # Create ORM interface to data
-    model_manager = modelmanager.ModelManager("sqlite:////root/sqlite.db")
-    model_manager.create_tables()
+    # 2. Create ORM interface to data
+    session_manager = modelmanager.SessionManager("sqlite:////root/sqlite.db")
+    session_manager.create_tables()
     # 3. Load APIs onto flask object as blueprints
     # blueprint = Blueprint('api', __name__, url_prefix='/api')
     # api = Api(version='1.0', title='War',
