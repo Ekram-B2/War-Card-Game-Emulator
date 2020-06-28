@@ -1,4 +1,5 @@
 import datetime
+import uuid
 from sqlalchemy import Column, ForeignKey, Integer, String, DateTime
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -6,8 +7,8 @@ base = declarative_base()
 
 class PlayerMove(base):
     __tablename__ = "player_moves"
-    move_id = Column(String(200), primary_key=True, default="0")
-    user_id = Column(String(200))
+    move_id = Column(String, primary_key=True, default=lambda: uuid.uuid4().hex)
+    user_id = Column(String(200), default="0")
     move = Column(Integer())
     time_created_at = Column(
         DateTime(), default=datetime.datetime.utcnow)

@@ -1,6 +1,5 @@
-# HTTP error codes to avoid magic numbers
-httpInternalServerError = 500
+from flask_restplus import Api
 
 # Main API manager object 
-api = Api(version='1.0', title='War',
-          description='API object for the War Card Game backend APIs')
+rest_api = Api(version='1.0', title='War Card Game',
+          description='API object for the War Card Game server side')

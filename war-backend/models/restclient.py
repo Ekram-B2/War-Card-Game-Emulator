@@ -13,35 +13,33 @@ class RestClient(ABC):
         pass
    
 class PlayerMovesClient(RestClient):
-    def get_from_store(self, data, session):
-        # 1. Get relevant information form the data object
-        user_id = data["user_id"]
-        # 2. Apply query object to trigger a read to the data store
-        moves = session.query(PlayerMove).filter_by(user_id=user_id).all()
-        # 3. Return moves
+    def get_from_store(self, session): 
+        # 1. Apply query object to trigger a read to the data store
+        moves = session.query(PlayerMove).all()
+        # 2. Return moves
         return moves
     
     def insert_in_store(self, data, session):
         # 1. Get relevant information from the data object
-        user_id = data["user_id"]
-        move_id = data["move_id"]
         move = data["move"]
         # 2. Create a new grain
-        player_move = PlayerMove(move_id=move_id, user_id=user_id, move=move)
+        largestId = session.query(PlayerMove).order_by(PlayerMove.move_id).limit(1)
+        player_move = PlayerMove(move=move)
         # 3. Add grain to the session registry
         session.add(player_move)
         # 4. Commit transaction
         session.commit()
 
 class GameSessionClient(RestClient):
-    def get_from_store(self, data, session):
+    def get_from_store(self, session):
         # 1. Apply query to trigger read from the data store
         game_sessions = session.query(GameSession).all()
         # 2. Return moves
         return game_sessions
     
-    def insert_in_store(self, session_id, session):
+    def insert_in_store(self, data, session):
         # 1. Create a new grain
+        session_id = data["sess_id"]
         game_session = GameSession(sess_id=session_id)
         # 2. Add grain to the session registry
         session.add(game_session)
