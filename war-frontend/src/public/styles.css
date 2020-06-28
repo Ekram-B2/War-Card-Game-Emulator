@@ -1,0 +1,44 @@
+.navbar {
+    text-align: center;
+    border: 3px solid black;
+    border-radius: 30%;
+}
+
+.header {
+    height:10%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: red;
+    border-radius: 30%;
+    
+}
+
+.main {
+    padding-top:50px;
+    text-align: center;
+}
+
+.footer {
+    text-align: center;
+    height: 10%;
+    width: 100%;
+    position: fixed;
+    padding: 4.5% 0;
+    top: 90%;
+    left:0;
+    background-color: red;
+}
+
+.arena {
+    position: fixed;
+    top: 25%;
+    left:9%;
+    height: 30%;
+    width: 70%;
+    border: 10px solid black;
+    background-color: white;
+    padding: 5%;
+    margin: auto;
+}
