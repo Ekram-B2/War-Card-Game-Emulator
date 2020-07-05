@@ -1,0 +1,96 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "RESTful server interface for managing persistance layer resources for the War backend card game",
+    "version": "1.0.0",
+    "title": "War Backend",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "tags": [
+    {
+      "name": "War Backend API",
+      "description": "APIs for war serverside"
+    }
+  ],
+  "paths": {
+    "/moves": {
+      "get": {
+        "tags": [
+          "Moves"
+        ],
+        "summary": "Returns all the player moves that the player has made thus far",
+        "responses": {
+          "200": {
+            "description": "A retreival operation for the moves made by the player was successful"
+          },
+          "400" : {
+            "description": "Unable to retreive the list of moves made by the player"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Moves"
+        ],
+        "summary": "Adds a new player move to the store",
+        "parameters": [
+          {
+            "in": "int",
+            "name": "move",
+            "required": true,
+            "description": "The hash representation of a move made"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A storage operation to add a new player move was successful"
+          },
+          "400" : {
+            "description": "Unable to store player move into store"
+          }
+        }
+      }
+    },
+    "/sessions": {
+      "get": {
+        "tags": [
+          "Sessions"
+        ],
+        "summary": "Returns all the game sessions played thus far",
+        "responses": {
+          "200": {
+            "description": "A retreival operation for the game sessions was successful"
+          },
+          "400" : {
+            "description": "Unable to retreive the game sessions"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Sessions"
+        ],
+        "summary": "Adds a new session to the store",
+        "parameters": [
+          {
+            "in": "string",
+            "name": "sess_id",
+            "required": true,
+            "description": "A generated ID for the new session"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A storage operation to add a new session was successful"
+          },
+          "400" : {
+            "description": "Unable to store session into store"
+          }
+        }
+      }
+    }
+  }
+}

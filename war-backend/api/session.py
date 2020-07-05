@@ -13,7 +13,6 @@ class Session(Resource):
     def post(self):
         # 1. Parse and extract object representation of request body
         args = request.form
-        session_id = args["sess_id"]
         # 2. Apply the transaction manager to store into the session data tables
         transactionManager = TransactionManager()
         client = GameSessionClient()
